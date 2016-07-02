@@ -26,19 +26,19 @@ function getDefaultModules() {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browesers:["last 2 version"]}!'
+        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!'
       },
       {
         test: /\.sass/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browesers:["last 2 version"]}!sass-loader?outputStyle=expanded&indentedSyntax'
+        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded&indentedSyntax'
       },
       {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browesers:["last 2 version"]}!sass-loader?outputStyle=expanded'
+        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded'
       },
       {
         test: /\.less/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browesers:["last 2 version"]}!less-loader'
+        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!less-loader'
       },
       {
         test: /\.styl/,
