@@ -55,24 +55,37 @@ class ImgStage extends React.Component {
 
   //初始化图片位置
   initImgPos(center) {
-    let imgsArrangeArr = this.state.imgsArrangeArr,
-      centerIndex =
-        center != undefined
-          ? center
-          : Math.floor(Math.random() * imgsArrangeArr.length), //中心位置图片随机选取
-      Constant = this.Constant,
-      centerPos = Constant.centerPos,
-      hPosRange = Constant.hPosRange,
-      vPosRange = Constant.vPosRange,
-      hPosRangeLeftSecX = hPosRange.leftSecX,
-      hPosRangeRightSecX = hPosRange.rightSecX,
-      hPosRangeY = hPosRange.y,
-      vPosRangeTopY = vPosRange.topY,
-      vPosRangeX = vPosRange.x,
-      //取出居中图片，并使其居中
-      imgsArrangeArrCenterArr = imgsArrangeArr.splice(centerIndex, 1)
+    let imgsArrangeArr = this.state.imgsArrangeArr
+    let isInit = (center === undefined)
+    let centerIndex = isInit
+        ? Math.floor(Math.random() * imgsArrangeArr.length) //中心位置图片随机选取
+        : center
+    let {
+      hPosRange,
+      vPosRange
+    } = this.Constant
+    let hPosRangeLeftSecX = hPosRange.leftSecX
+    let hPosRangeRightSecX = hPosRange.rightSecX
+    let hPosRangeY = hPosRange.y
+    let vPosRangeTopY = vPosRange.topY
+    let vPosRangeX = vPosRange.x
+
+    //取出居中图片，并使其居中
+    let imgsArrangeArrCenterArr = imgsArrangeArr.splice(centerIndex, 1)
+    let {
+      width: stageW,
+      height: stageH
+    } = this.getDomSize(ReactDOM.findDOMNode(this.refs.stage))
+    let {
+      width: imgW,
+      height: imgH
+    } = this.getDomSize(ReactDOM.findDOMNode(this.refs[`imgFigure${centerIndex}`]))
+
     imgsArrangeArrCenterArr[0] = {
-      pos: centerPos,
+      pos: {
+        left: stageW / 2 - imgW / 2,
+        top: stageH / 2 - imgH / 2
+      },
       rotate: 0,
       center: true
     }
@@ -132,23 +145,32 @@ class ImgStage extends React.Component {
     })
   }
 
-  componentDidMount() {
-    let stageDOM = ReactDOM.findDOMNode(this.refs.stage),
-      stageW = stageDOM.scrollWidth,
-      stageH = stageDOM.scrollHeight,
-      halfStageW = Math.ceil(stageW / 2),
-      halfStageH = Math.ceil(stageH / 2)
-    let imgFigureDOM = ReactDOM.findDOMNode(this.refs.imgFigure0),
-      imgW = imgFigureDOM.scrollWidth,
-      imgH = imgFigureDOM.scrollHeight,
-      halfImgW = Math.ceil(imgW / 2),
-      halfImgH = Math.ceil(imgH / 2)
+  getDomSize (dom) {
+    const {
+      scrollWidth: width,
+      scrollHeight: height
+    } = dom
 
-    //中心图片位置
-    this.Constant.centerPos = {
-      left: halfStageW - halfImgW,
-      top: halfStageH - halfImgH
+    return {
+      width,
+      height
     }
+  }
+
+  componentDidMount() {
+    let {
+      width: stageW,
+      height: stageH
+    } = this.getDomSize(ReactDOM.findDOMNode(this.refs.stage))
+    let halfStageW = stageW / 2
+    let halfStageH = stageH / 2
+
+    let {
+      width: imgW,
+      height: imgH
+    } = this.getDomSize(ReactDOM.findDOMNode(this.refs.imgFigure0))
+    let halfImgW = imgW / 2
+    let halfImgH = imgH / 2
 
     //图片水平方向范围
     this.Constant.hPosRange.leftSecX[0] = -halfImgW
@@ -166,6 +188,7 @@ class ImgStage extends React.Component {
     //初始化图片位置
     this.initImgPos()
   }
+
   render() {
     let controllerUnits = [],
       ImgFigures = []

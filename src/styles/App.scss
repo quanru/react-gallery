@@ -22,6 +22,10 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: #ddd;
+  background-image: url('../images/bg1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   perspective: 1800px;
 
   img {

@@ -27,10 +27,10 @@ class ImgFigure extends React.Component {
           'is-inverse': this.props.arrange.inverse,
           'is-center': this.props.arrange.center
         })}
-        style={{
+        style={this.props.arrange.rotate ? {
           transform: `rotate(${this.props.arrange.rotate}deg)`,
           ...this.props.arrange.pos
-        }}
+        } : this.props.arrange.pos}
         onClick={this.handleClick}
       >
         <img
