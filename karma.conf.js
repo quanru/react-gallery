@@ -1,25 +1,23 @@
-var webpackCfg = require('./webpack.config');
+var webpackCfg = require('./webpack.config')
 
 // Set node environment to testing
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'test'
 
 module.exports = function(config) {
   config.set({
     basePath: '',
-    browsers: [ 'PhantomJS' ],
-    files: [
-      'test/loadtests.js'
-    ],
+    browsers: ['PhantomJS'],
+    files: ['test/loadtests.js'],
     port: 8000,
     captureTimeout: 60000,
-    frameworks: [ 'mocha', 'chai' ],
+    frameworks: ['mocha', 'chai'],
     client: {
       mocha: {}
     },
     singleRun: true,
-    reporters: [ 'mocha', 'coverage' ],
+    reporters: ['mocha', 'coverage'],
     preprocessors: {
-      'test/loadtests.js': [ 'webpack', 'sourcemap' ]
+      'test/loadtests.js': ['webpack', 'sourcemap']
     },
     webpack: webpackCfg,
     webpackServer: {
@@ -27,10 +25,7 @@ module.exports = function(config) {
     },
     coverageReporter: {
       dir: 'coverage/',
-      reporters: [
-        { type: 'html' },
-        { type: 'text' }
-      ]
+      reporters: [{ type: 'html' }, { type: 'text' }]
     }
-  });
-};
+  })
+}

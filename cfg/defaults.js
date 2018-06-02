@@ -4,11 +4,11 @@
  * Using [].push will add to the base array, so a require will alter
  * the base array output.
  */
-'use strict';
+'use strict'
 
-const path = require('path');
-const srcPath = path.join(__dirname, '/../src');
-const dfltPort = 8000;
+const path = require('path')
+const srcPath = path.join(__dirname, '/../src')
+const dfltPort = 8000
 
 /**
  * Get the default modules object for webpack
@@ -26,19 +26,23 @@ function getDefaultModules() {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!'
+        loader:
+          'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!'
       },
       {
         test: /\.sass/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded&indentedSyntax'
+        loader:
+          'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded&indentedSyntax'
       },
       {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded'
+        loader:
+          'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded'
       },
       {
         test: /\.less/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!less-loader'
+        loader:
+          'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!less-loader'
       },
       {
         test: /\.styl/,
@@ -57,7 +61,7 @@ function getDefaultModules() {
         loader: 'json-loader'
       }
     ]
-  };
+  }
 }
 
 module.exports = {
@@ -65,4 +69,4 @@ module.exports = {
   publicPath: '/assets/',
   port: dfltPort,
   getDefaultModules: getDefaultModules
-};
+}
