@@ -1,18 +1,19 @@
-require('normalize.css/normalize.css')
-require('styles/App.scss')
-let imageDatas = require('../data/imageData.json')
-import Utils from '../utils/utils'
+import 'normalize.css/normalize.css'
+import 'styles/App.scss'
+import imageDatas from '../data/imageData.json'
+import Utils from '../utils'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ImgFigure from './ImgFigure'
 import ControllerUnit from './ControllerUnit'
 
-imageDatas = Utils.getImageUrl(imageDatas)
+let imageUrls = Utils.getImageUrl(imageDatas)
 
 //图片舞台组件
 class ImgStage extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       imgsArrangeArr: [
         //图片位置状态数组
@@ -35,6 +36,7 @@ class ImgStage extends React.Component {
       }
     }
   }
+
   inverse(index) {
     return () => {
       var imgsArrangeArr = this.state.imgsArrangeArr
@@ -44,11 +46,13 @@ class ImgStage extends React.Component {
       })
     }
   }
+
   center(index) {
     return () => {
       this.initImgPos(index)
     }
   }
+
   //初始化图片位置
   initImgPos(center) {
     let imgsArrangeArr = this.state.imgsArrangeArr,
@@ -127,6 +131,7 @@ class ImgStage extends React.Component {
       imgsArrangeArr: imgsArrangeArr
     })
   }
+
   componentDidMount() {
     let stageDOM = ReactDOM.findDOMNode(this.refs.stage),
       stageW = stageDOM.scrollWidth,
@@ -165,7 +170,7 @@ class ImgStage extends React.Component {
     let controllerUnits = [],
       ImgFigures = []
 
-    imageDatas.forEach((value, index) => {
+    imageUrls.forEach((value, index) => {
       if (!this.state.imgsArrangeArr[index]) {
         this.state.imgsArrangeArr[index] = {
           pos: {
@@ -196,10 +201,14 @@ class ImgStage extends React.Component {
         />
       )
     })
+
     return (
-      <section className="stage" ref="stage">
-        <section className="img-sec">{ImgFigures}</section>
-        <nav className="controller-nav">{controllerUnits}</nav>
+      <section
+        className='stage'
+        ref='stage'
+      >
+        <section className='img-sec'>{ImgFigures}</section>
+        <nav className='controller-nav'>{controllerUnits}</nav>
       </section>
     )
   }

@@ -43,6 +43,9 @@ body {
       &.is-inverse {
         transform: translate(320px) rotateY(180deg);
       }
+      &.is-center {
+        z-index: 999;
+      }
     }
     figcaption {
       text-align: center;
