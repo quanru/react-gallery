@@ -190,8 +190,8 @@ class ImgStage extends React.Component {
   }
 
   render() {
-    let controllerUnits = [],
-      ImgFigures = []
+    const controllerUnits = []
+    const ImgFigures = []
 
     imageUrls.forEach((value, index) => {
       if (!this.state.imgsArrangeArr[index]) {

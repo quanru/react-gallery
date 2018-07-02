@@ -1,6 +1,25 @@
 import React from 'react'
 import classnames from 'classnames'
 
+const renderMedia = (mediaUrl, title) => {
+  if (!mediaUrl) {
+    return null
+  }
+
+  return mediaUrl.includes('.mp4')
+    ? (
+      <video
+        controls
+        type='video/mp4'
+        src={mediaUrl}
+      />
+    ) : (
+      <img
+        src={mediaUrl}
+        alt={title}
+      />
+    )
+}
 //图片组件
 class ImgFigure extends React.Component {
   constructor(props) {
@@ -33,16 +52,18 @@ class ImgFigure extends React.Component {
         } : this.props.arrange.pos}
         onClick={this.handleClick}
       >
-        <img
-          src={this.props.data.imageURL}
-          alt={this.props.data.title}
-        />
+        {
+          renderMedia(this.props.data.imageURL, this.props.data.title)
+        }
         <figcaption>
           <h2 className='img-title'>{this.props.data.title}</h2>
           <div
             className='img-back'
             onClick={this.handleClick}
           >
+            {
+              renderMedia(this.props.data.imageURL2, this.props.data.title)
+            }
             <p>{this.props.data.desc}</p>
           </div>
         </figcaption>
